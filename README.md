@@ -50,7 +50,7 @@ Run the following command to compose the stack:
 ```
 make up
 ```
-The results will print in your terminal
+The results will print in your terminal, as well as save in `out/summary.json`
 
 ### 5. Stop the stack
 Run the following to stop and remove the containers and volumes
@@ -71,5 +71,108 @@ In order to do the following with one command for reruns, use the following comm
 make all
 ```
 This runs clean to clear all data and then rebuilds the app by running up
+
+
+## Output
+The output file will look similar to this:
+```
+{
+  "total_trips": 24,
+  "avg_fare_by_city": [
+    {
+      "city": "Chicago",
+      "avg_fare": 32.266666666666666
+    },
+    {
+      "city": "Houston",
+      "avg_fare": 45.4
+    },
+    {
+      "city": "Seattle",
+      "avg_fare": 12.466666666666667
+    },
+    {
+      "city": "Los Angeles",
+      "avg_fare": 15.36
+    },
+    {
+      "city": "New York",
+      "avg_fare": 17.4
+    },
+    {
+      "city": "San Francisco",
+      "avg_fare": 13.566666666666666
+    },
+    {
+      "city": "Boston",
+      "avg_fare": 21.5
+    },
+    {
+      "city": "Charlotte",
+      "avg_fare": 17.283333333333335
+    }
+  ],
+  "top_by_minutes": [
+    {
+      "city": "Los Angeles",
+      "minutes": 56,
+      "fare": 24.24
+    },
+    {
+      "city": "Los Angeles",
+      "minutes": 54,
+      "fare": 8.54
+    },
+    {
+      "city": "Los Angeles",
+      "minutes": 43,
+      "fare": 13.3
+    },
+    {
+      "city": "Charlotte",
+      "minutes": 34,
+      "fare": 19.35
+    },
+    {
+      "city": "Boston",
+      "minutes": 28,
+      "fare": 29.3
+    },
+    {
+      "city": "Houston",
+      "minutes": 26,
+      "fare": 22.4
+    },
+    {
+      "city": "Boston",
+      "minutes": 26,
+      "fare": 22.4
+    },
+    {
+      "city": "Boston",
+      "minutes": 25,
+      "fare": 12.8
+    },
+    {
+      "city": "Charlotte",
+      "minutes": 21,
+      "fare": 20.0
+    },
+    {
+      "city": "Seattle",
+      "minutes": 21,
+      "fare": 12.2
+    }
+  ]
+}
+```
+
+## Troubleshooting
+- If the app exits immediately due to an inability to connect to the database, re-run `make up` to attempt reconnecting.
+- If permission is denied for out/ folder, make sure that `out/` exists and has write permisions. To fix this you can run the following to remake the directory:
+  ```
+  rm -rf out && mkdir -p out
+  ```
+- If port 5432 is busy, edit `compose.yml` as described in step 2
 
 
