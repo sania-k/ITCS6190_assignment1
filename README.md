@@ -1,11 +1,11 @@
 ## Assignment Description
-A two-container stack on transit time and cost in Charlotte, New York City, and San Francisco using Docker. 
+A two-container stack on transit time and cost in multiple cities using Docker. 
 One container will run a PostgreSQL database containing dummy entries on the transit time and cost in the three cities.
 The other container will host a Python application that will will connect to the database, query some number of rows,
 compute the statistics below, and then print and save the results.
 - Total number of trips
 - Average fare by city
-- Top N (default 5) trips by city, minutes, and fare
+- Top N (default 10) trips by city, minutes, and fare
 
 ## Setup and Execution
 ### Dependencies
@@ -31,9 +31,13 @@ Move into the repo
 cd ITCS6190_assignment1
 ```
 
-### 2. Define database port [optional] 
-If the port 5432 on your local machine is occupied, go into the `compose.yml` file and alter the line 
-`DB_PORT: "5432"` with a free port
+### 2. Define database port and number of cities[optional] 
+Alter `compose.yml` to personalize the stack
+- If the port 5432 on your local machine is occupied, go into the `compose.yml` file and alter the line 
+`DB_PORT: "5432"` with a different port number
+- If you want a different number of cities in your app summary, alter the line `APP_TOP_N: "10"` as desired
+
+
 
 ### 3. Build the stack
 Run the following command to build the app
@@ -67,4 +71,5 @@ In order to do the following with one command for reruns, use the following comm
 make all
 ```
 This runs clean to clear all data and then rebuilds the app by running up
+
 
